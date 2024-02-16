@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .folder-list { 
+            padding: 20px; 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 10px;
+        }
+        .folder { 
+            background: #f0f0f0; 
+            padding: 10px; 
+            border-radius: 5px; 
+        }
+        .folder a { 
+            text-decoration: none; 
+            color: #333; 
+        }
+
+        /* 媒体查询针对小屏幕设备 */
+        @media (max-width: 600px) {
+            .folder-list { 
+                display: block; /* 取消flex布局，使用标准块级元素布局 */
+                padding: 0; /* 调整内边距 */
+            }
+            .folder { 
+                background: #ffffff;
+                width: auto; /* 自动调整宽度，占满整个容器 */
+                margin: 5px 0; /* 添加上下外边距，左右外边距为0 */
+                border-radius: 0; /* 取消圆角效果 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="folder-list">
+        {% for folder in folders %}
+            <div class="folder">
+                <a href="{{ url_for('serve_res', subpath=folder + '/index.html') }}">{{ folder }}</a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
